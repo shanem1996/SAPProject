@@ -26,6 +26,18 @@ class SignInActivity : AppCompatActivity() {
             val username = binding.tfUsername.text.toString()
             val password = binding.tfPassword.text.toString()
 
+            val query = "SELECT * FROM users WHERE username = '$username' AND password = '$password'"
+
+            val cursor = db.rawQuery(query, null)
+
+            if (cursor.count > 0) {
+                Snackbar.make(view, "Success", Snackbar.LENGTH_LONG).show()
+                val home = Intent(this, HomeActivity::class.java)
+                startActivity(home)
+            } else {
+                Snackbar.make(view, "Failure", Snackbar.LENGTH_LONG).show()
+            }
+
         }
     }
 
