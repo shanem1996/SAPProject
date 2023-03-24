@@ -3,6 +3,9 @@ package com.example.sapproject.activities.database
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.service.controls.ControlsProviderService.TAG
+import android.util.Log
+import com.example.sapproject.activities.models.User
 
 class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object{
@@ -24,6 +27,29 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME)
         onCreate(db)
     }
+
+    fun getUsers(): List<User> {
+        val users = mutableListOf<User>()
+        val db = this.readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM $TABLE_NAME", null)
+        try {
+            if(cursor.moveToFirst()) {
+                do {
+                    val name = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME))
+                    val username = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_USERNAME))
+                    users.add(User(name, username))
+                } while (cursor.moveToNext())
+            }
+        } catch (e: java.lang.Exception) {
+            Log.e(TAG, "Error")
+        } finally {
+            cursor.close()
+            db.close()
+        }
+        return users
+
+    }
+
 
 
 }

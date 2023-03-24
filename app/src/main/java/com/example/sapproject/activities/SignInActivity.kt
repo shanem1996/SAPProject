@@ -34,6 +34,8 @@ class SignInActivity : AppCompatActivity() {
                 Snackbar.make(view, "Success", Snackbar.LENGTH_LONG).show()
                 val home = Intent(this, HomeActivity::class.java)
                 startActivity(home)
+                db.close()
+                cursor.close()
             } else {
                 Snackbar.make(view, "Failure", Snackbar.LENGTH_LONG).show()
             }
