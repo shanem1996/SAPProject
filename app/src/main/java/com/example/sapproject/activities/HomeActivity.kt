@@ -1,7 +1,9 @@
 package com.example.sapproject.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.CalendarContract.Events
 import com.example.sapproject.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
@@ -13,5 +15,15 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        binding.btnEditEvents.setOnClickListener {
+            val events = Intent(this, EventsActivity::class.java)
+            startActivity(events)
+        }
+
+        binding.btnEditUsers.setOnClickListener {
+            val users = Intent(this, UsersActivity::class.java)
+            startActivity(users)
+        }
     }
 }

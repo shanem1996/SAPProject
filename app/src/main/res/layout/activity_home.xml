@@ -6,4 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".activities.HomeActivity">
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnEditUsers"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:hint="Edit Users"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.445" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnEditEvents"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:hint="Edit Events"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnEditUsers"
+        app:layout_constraintVertical_bias="0.081" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
