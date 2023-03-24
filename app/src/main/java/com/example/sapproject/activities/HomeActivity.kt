@@ -25,5 +25,10 @@ class HomeActivity : AppCompatActivity() {
             val users = Intent(this, UsersActivity::class.java)
             startActivity(users)
         }
+
+        binding.btnCreateEvents.setOnClickListener {
+            val createEvents = Intent(this, CreateEventActivity::class.java)
+            startActivity(createEvents)
+        }
     }
 }

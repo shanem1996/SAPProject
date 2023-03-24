@@ -2,11 +2,9 @@ package com.example.sapproject.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
 import android.widget.ListView
 import com.example.sapproject.R
 import com.example.sapproject.activities.database.DatabaseHelper
-import com.example.sapproject.databinding.ActivityUsersBinding
 
 class UsersActivity : AppCompatActivity() {
 
