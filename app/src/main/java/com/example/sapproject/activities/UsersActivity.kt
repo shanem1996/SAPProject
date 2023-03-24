@@ -21,7 +21,7 @@ class UsersActivity : AppCompatActivity() {
         val db = DatabaseHelper(this)
         val users = db.getUsers()
 
-        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, users.map { "${it.name} (${it.username})" })
+        val adapter = UserListAdapter(this, users)
         listView.adapter = adapter
 
     }
