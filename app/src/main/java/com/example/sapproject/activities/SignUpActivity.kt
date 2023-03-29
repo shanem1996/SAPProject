@@ -29,7 +29,7 @@ class SignUpActivity : AppCompatActivity() {
             if (email.isNotEmpty() && password.isNotEmpty() && confPassword.isNotEmpty()) {
                 if (password != confPassword) {
                     Snackbar.make(view, "Passwords do not match", Snackbar.LENGTH_LONG).show()
-                } else {
+                } else if (validatePassword(password)){
                     firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{
                         if (it.isSuccessful) {
                             val currentUser = FirebaseAuth.getInstance().currentUser
@@ -48,10 +48,17 @@ class SignUpActivity : AppCompatActivity() {
                             Snackbar.make(view, "Failure", Snackbar.LENGTH_LONG).show()
                         }
                     }
+                } else {
+                    Snackbar.make(view, "Password must have a number and be at least 8 characters long", Snackbar.LENGTH_LONG).show()
                 }
             } else {
                 Snackbar.make(view, "Fields must be filled", Snackbar.LENGTH_LONG).show()
             }
         }
+    }
+
+    fun validatePassword(password: String): Boolean {
+        val regex = Regex("^(?=.*\\d).{8,}$")
+        return regex.matches(password)
     }
 }
