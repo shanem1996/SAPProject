@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.sapproject.activities.model.Event
+import com.example.sapproject.databinding.ActivityEventsBinding
 import com.example.sapproject.databinding.ActivityHomeBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -39,6 +40,8 @@ class HomeActivity : AppCompatActivity() {
 
             eventDocRef.add(event).addOnSuccessListener {
                 Snackbar.make(view, "Success", Snackbar.LENGTH_LONG).show()
+                val events = Intent(this, EventsActivity::class.java)
+                startActivity(events)
             }
 
         }

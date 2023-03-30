@@ -2,6 +2,10 @@ package com.example.sapproject.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.LayoutManager
+import com.example.sapproject.activities.adapter.MyAdapter
 import com.example.sapproject.activities.model.Event
 import com.example.sapproject.databinding.ActivityEventsBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -27,15 +31,18 @@ class EventsActivity : AppCompatActivity() {
         val userId = currentUser!!.uid
         val userDocRef = firestore.collection("User").document(userId)
         val eventCollectionRef = userDocRef.collection("Event")
+        val recyclerView: RecyclerView = binding.recyclerView
+        val adapter = MyAdapter(emptyList())
+
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
         eventCollectionRef.get().addOnSuccessListener { querySnapshot ->
-            val myDataList = mutableListOf<Event>()
-            for (document in querySnapshot.documents) {
-                val myData = document.toObject<Event>()
-                if (myData != null) {
-                    myDataList.add(myData)
-                }
+            val myDataList = querySnapshot.documents.map { documentSnapshot ->
+                val myData = documentSnapshot.toObject<Event>()
+                myData
             }
+            adapter.setData(myDataList as List<Event>)
 
         }
 
