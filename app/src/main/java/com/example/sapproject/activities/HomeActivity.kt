@@ -1,5 +1,6 @@
 package com.example.sapproject.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.sapproject.activities.model.Event
@@ -40,6 +41,11 @@ class HomeActivity : AppCompatActivity() {
                 Snackbar.make(view, "Success", Snackbar.LENGTH_LONG).show()
             }
 
+        }
+
+        binding.btnEvents.setOnClickListener {
+            val events = Intent(this, EventsActivity::class.java)
+            startActivity(events)
         }
     }
 }
