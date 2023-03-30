@@ -10,7 +10,7 @@
         android:id="@+id/tvMain"
         android:layout_width="wrap_content"
         android:layout_height="19dp"
-        android:text="Insecure Software Application"
+        android:text="Secure Software Application"
         app:layout_constraintBottom_toTopOf="@+id/btnSignUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

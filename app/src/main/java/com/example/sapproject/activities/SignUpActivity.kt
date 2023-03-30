@@ -1,5 +1,6 @@
 package com.example.sapproject.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.sapproject.databinding.ActivitySignUpBinding
@@ -40,8 +41,20 @@ class SignUpActivity : AppCompatActivity() {
                                 "email" to email
                             )
 
+
+
                             userDocRef.set(user).addOnSuccessListener {
                                 Snackbar.make(view, "Success", Snackbar.LENGTH_LONG).show()
+                                userDocRef.get().addOnSuccessListener { documentSnapshot ->
+                                    val admin = documentSnapshot.getBoolean("admin")
+                                    if(admin == true) {
+                                        val adminHome = Intent(this, AdminHomeActivity::class.java)
+                                        startActivity(adminHome)
+                                    } else {
+                                        val home = Intent(this, HomeActivity::class.java)
+                                        startActivity(home)
+                                    }
+                                }
                             }
 
                         } else {
